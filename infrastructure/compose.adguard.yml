@@ -1,0 +1,27 @@
+version: "3.9"
+
+networks:
+  infra:
+    driver: bridge
+
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguard
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
+    volumes:
+      - ${CONFIG_DIR}/adguard/config:/opt/adguardhome/conf
+      - ${CONFIG_DIR}/adguard/work:/opt/adguardhome/work
+    ports:
+      - "3000:3000"
+      - "5301:80"
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "853:853/tcp"
+      - "784:784/udp"
+    networks:
+      - infra

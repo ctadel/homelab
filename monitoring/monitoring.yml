@@ -1,0 +1,11 @@
+version: "3.9"
+
+networks:
+  stats:
+    driver: bridge
+
+include:
+  - compose.cadvisor.yml
+  - compose.prometheus.yml
+  - compose.grafana.yml
+  - compose.nodeexporter.yml

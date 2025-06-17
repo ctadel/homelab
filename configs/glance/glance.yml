@@ -1,0 +1,151 @@
+pages:
+  - name: Dashboard
+    width: slim
+    hide-desktop-navigation: false
+    center-vertically: true
+    columns:
+
+      - size: small
+        widgets:
+          - type: server-stats
+            servers:
+              - type: local
+                name: Services
+                hide-mountpoints-by-default: true
+                mountpoints:
+                  "/":
+                    name: SSD Root
+                    hide: false
+                  "/archive":
+                    name: Archive
+                    hide: false
+
+          - type: dns-stats
+            service: adguard
+            url: http://0.0.0.0:5301
+            username: admin
+            password: password
+
+          - type: monitor
+            cache: 1m
+            title: Web Apps
+            style: compact
+            sites:
+              - title: Portfolio
+                url: http://0.0.0.0:10000
+              - title: Web Library - Frontend
+                url: http://0.0.0.0:10001
+              - title: Web Library - Backend
+                url: http://0.0.0.0:10002
+              - title: Rashifall API
+                url: http://0.0.0.0:10003
+              - title: Naukri Service Updater
+                url: http://0.0.0.0:10003
+
+      - size: full
+        widgets:
+          - type: search
+            autofocus: true
+            search-engine: google
+            new-tab: true
+            bangs:
+              - title: YouTube
+                shortcut: "!yt"
+                url: https://www.youtube.com/results?search_query={QUERY}
+              - title: Github
+                shortcut: "!gh"
+                url: https://github.com/search?q={QUERY}&type=repositories
+
+          - type: monitor
+            cache: 1m
+            title: Home Assistant
+            sites:
+              - title: Home Assistant
+                url: http://0.0.0.0:8123
+                check-url: http://0.0.0.0:8123
+                icon: di:home-assistant
+
+          - type: monitor
+            cache: 1m
+            title: Media Server
+            sites:
+              - title: Jellyfin
+                url: http://0.0.0.0:8096
+                check-url: http://0.0.0.0:8096
+                icon: di:jellyfin
+              - title: Plex
+                url: http://0.0.0.0:32400
+                check-url: http://0.0.0.0:32400
+                icon: di:plex
+                alt-status-codes:
+                  - 401
+                  - 403
+              - title: Jellyseerr
+                url: http://0.0.0.0:5055
+                check-url: http://0.0.0.0:5055
+                icon: di:jellyseerr
+              - title: qBittorrent
+                url: http://0.0.0.0:8181
+                check-url: http://0.0.0.0:8181
+                icon: di:qbittorrent
+              - title: Sonarr
+                url: http://0.0.0.0:8989
+                check-url: http://0.0.0.0:8989
+                icon: di:sonarr
+              - title: Radarr
+                url: http://0.0.0.0:7878
+                check-url: http://0.0.0.0:7878
+                icon: di:radarr
+              - title: Prowlarr
+                url: http://0.0.0.0:9696
+                check-url: http://0.0.0.0:9696
+                icon: di:prowlarr
+
+          - type: monitor
+            cache: 1m
+            title: Surveillance
+            sites:
+              - title: Frigate
+                url: http://0.0.0.0:5000
+                check-url: http://0.0.0.0:5000
+                icon: di:frigate
+
+          - type: monitor
+            cache: 1m
+            title: Cloud Server
+            sites:
+              - title: Nextcloud
+                url: http://0.0.0.0:8081
+                check-url: http://0.0.0.0:8081
+                icon: di:nextcloud
+              - title: File Browser
+                url: http://0.0.0.0:8082
+                check-url: http://0.0.0.0:8082
+                icon: di:filebrowser
+
+
+          - type: monitor
+            cache: 1m
+            title: Infrastructure
+            sites:
+              - title: Portainer
+                url: http://0.0.0.0:9000
+                check-url: http://0.0.0.0:9000
+                icon: di:portainer
+              - title: AdGuard Home
+                url: http://0.0.0.0:5301
+                check-url: http://0.0.0.0:5301
+                icon: di:adguard-home
+              - title: Nginx Proxy Manager
+                url: http://0.0.0.0:81
+                check-url: http://0.0.0.0:81
+                icon: di:nginx-proxy-manager
+              - title: Heimdall
+                url: http://0.0.0.0:4443
+                check-url: http://0.0.0.0:4443
+                icon: di:heimdall
+
+
+branding:
+  custom-footer: |
+    <p>Powered by <a href="https://github.com/ctadel/homelab">ctadel</a></p>

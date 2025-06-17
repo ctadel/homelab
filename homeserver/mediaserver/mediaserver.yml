@@ -1,0 +1,15 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+include:
+  - compose.plex.yml
+  - compose.jellyfin.yml
+  - compose.jellyseerr.yml
+  - compose.radarr.yml
+  - compose.sonarr.yml
+  - compose.prowlarr.yml
+  - compose.qbittorrent.yml
+  - compose.jackett.yml

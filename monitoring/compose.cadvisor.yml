@@ -1,0 +1,27 @@
+version: "3.9"
+
+networks:
+  stats:
+    driver: bridge
+
+services:
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    user: "0:0"
+    ports:
+      - 9080:8080
+    environment:
+      - TZ=${TZ:-UTC}
+      - PUID=0
+      - PGID=0
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
+    networks:
+      - stats
+    restart: unless-stopped

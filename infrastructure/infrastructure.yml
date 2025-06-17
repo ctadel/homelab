@@ -1,0 +1,10 @@
+version: "3.9"
+
+networks:
+  infra:
+    driver: bridge
+
+include:
+  - compose.nginx-proxy-manager.yml
+  - compose.adguard.yml
+  - compose.portainer.yml

@@ -1,0 +1,18 @@
+version: "3.9"
+
+networks:
+  homeserver:
+    driver: bridge
+
+  theatre:
+    driver: bridge
+
+  cloudserver:
+    driver: bridge
+
+include:
+  - cloudserver/cloudserver.yml
+  - homesecurity/homesecurity.yml
+  - homeassistant/homeassistant.yml
+  - mediaserver/mediaserver.yml
+

@@ -1,0 +1,22 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ${CONFIG_DIR}/prowlarr:/config
+    ports:
+      - 9696:9696
+    networks:
+      - theatre
+    restart: unless-stopped
+

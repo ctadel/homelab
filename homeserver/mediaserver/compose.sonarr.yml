@@ -1,0 +1,24 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ${CONFIG_DIR}/sonarr:/config
+      - ${MEDIA_DIR}/series:/series
+      - ${MEDIA_DIR}/downloads:/downloads
+    ports:
+      - "8989:8989"
+    networks:
+      - theatre
+    restart: unless-stopped
+

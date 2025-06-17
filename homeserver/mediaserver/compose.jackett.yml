@@ -1,0 +1,21 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ${CONFIG_DIR}/jackett:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+    ports:
+      - "9117:9117"
+    restart: unless-stopped
+

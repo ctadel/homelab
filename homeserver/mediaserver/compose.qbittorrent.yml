@@ -1,0 +1,26 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+services:
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+      - WEBUI_PORT=8181
+      - QBITTORRENT__WEBUI__USERNAME=${QBITTORRENT_WEBUI_USERNAME:-admin}
+      - QBITTORRENT__WEBUI__PASSWORD=${QBITTORRENT_WEBUI_PASSWORD:-adminadmin}
+    volumes:
+      - ${CONFIG_DIR}/qbittorrent:/config
+      - ${MEDIA_DIR}/downloads:/downloads
+    networks:
+      - theatre
+    ports:
+      - "8181:8181"
+    restart: unless-stopped
+

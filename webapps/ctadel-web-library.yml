@@ -1,0 +1,31 @@
+version: "3.9"
+
+networks:
+  webapp:
+    driver: bridge
+
+services:
+  backend:
+    image: ctadel/wlib-backend:latest
+    container_name: backend
+    restart: unless-stopped
+    environment:
+      - CORS_ALLOWED_ORIGINS=http://172.28.0.3,http://0.0.0.0:10001,http://localhost:10001
+      - TZ=${TZ:-'UTC'}
+    ports:
+      - "10002:8000"
+    networks:
+      - webapp
+
+  frontend:
+    image: ctadel/wlib-frontend:latest
+    container_name: frontend
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ:-'UTC'}
+    ports:
+      - "10001:80"
+    depends_on:
+      - backend
+    networks:
+      - webapp

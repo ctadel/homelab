@@ -1,0 +1,8 @@
+version: "3.9"
+
+networks:
+  homeserver:
+    driver: bridge
+
+include:
+  - compose.frigate.yml

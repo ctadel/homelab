@@ -1,0 +1,22 @@
+version: "3.9"
+
+networks:
+  infra:
+    driver: bridge
+
+services:
+  heimdall:
+    image: linuxserver/heimdall
+    container_name: heimdall
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_DIR}/heimdall:/config
+    ports:
+      - "8088:8088"
+      - "4443:4443"
+    networks:
+      - infra
+    restart: unless-stopped

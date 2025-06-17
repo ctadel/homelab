@@ -1,0 +1,26 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-UTC}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM:-}
+    volumes:
+      - ${CONFIG_DIR}/plex:/config
+      - ${MEDIA_DIR}/movies:/movies
+      - ${MEDIA_DIR}/series:/series
+      - ${MEDIA_DIR}/music:/music
+    ports:
+      - 32400:32400
+    networks:
+      - theatre
+    restart: unless-stopped

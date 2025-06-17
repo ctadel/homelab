@@ -1,0 +1,20 @@
+version: "3.9"
+
+networks:
+  theatre:
+    driver: bridge
+
+services:
+  jellyseerr:
+    container_name: jellyseerr
+    image: fallenbagel/jellyseerr:latest
+    ports:
+      - 5055:5055
+    environment:
+      - LOG_LEVEL=info
+      - TZ=${TZ:-UTC}
+    volumes:
+      - ${CONFIG_DIR}/jellyseerr:/app/config
+    networks:
+      - theatre
+    restart: unless-stopped

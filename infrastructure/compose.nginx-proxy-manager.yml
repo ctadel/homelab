@@ -1,0 +1,24 @@
+version: "3.9"
+
+networks:
+  infra:
+    driver: bridge
+
+services:
+  nginx-proxy-manager:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: nginx-proxy-manager
+    environment:
+      - TZ=${TZ:-UTC}
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+    volumes:
+      - ${CONFIG_DIR}/nginx/data:/data
+      - ${CONFIG_DIR}/nginx/letsencrypt:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    networks:
+      - infra
+    restart: unless-stopped

@@ -1,0 +1,30 @@
+version: "3.9"
+
+networks:
+  infra:
+    driver: bridge
+  mediaserver:
+    driver: bridge
+  homeserver:
+    driver: bridge
+  cloudserver:
+    driver: bridge
+
+services:
+  glance:
+    container_name: glance
+    image: glanceapp/glance
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ}
+    volumes:
+      - ${CONFIG_DIR}/glance:/app/config
+    ports:
+      - "8080:8080"
+    networks:
+      - infra
+      - mediaserver
+      - homeserver
+      - cloudserver
+    restart: unless-stopped

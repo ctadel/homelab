@@ -1,0 +1,23 @@
+version: "3.9"
+
+networks:
+  cloudserver:
+    driver: bridge
+
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    environment:
+      - PUID=${PUID:-1000}
+      - PGID=${PGID:-1000}
+      - TZ=${TZ:-'UTC'}
+    volumes:
+      - ${CONFIG_DIR}/nextcloud:/config
+      - ${MEDIA_DIR}/nextcloud:/data
+    ports:
+      - "8081:80"
+      - "8082:443"
+    networks:
+      - cloudserver
+    restart: unless-stopped

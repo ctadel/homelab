@@ -1,0 +1,9 @@
+version: "3.9"
+
+networks:
+  cloudserver:
+    driver: bridge
+
+include:
+  - compose.nextcloud.yml
+  - compose.filebrowser.yml
