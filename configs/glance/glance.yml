@@ -28,6 +28,23 @@ pages:
 
           - type: monitor
             cache: 1m
+            title: Service Monitoring
+            sites:
+              - title: Grafana
+                url: http://0.0.0.0:9050/d/rYdddlPWk/node-exporter-full
+                check-url: http://0.0.0.0:9050
+                icon: di:grafana
+              - title: Prometheus
+                url: http://0.0.0.0:9090/targets
+                check-url: http://0.0.0.0:9090
+                icon: di:prometheus
+              - title: cAdvisor
+                url: http://0.0.0.0:9080
+                check-url: http://0.0.0.0:9080
+                icon: sh:cadvisor
+
+          - type: monitor
+            cache: 1m
             title: Web Apps
             style: compact
             sites:
@@ -40,7 +57,7 @@ pages:
               - title: Rashifall API
                 url: http://0.0.0.0:10003
               - title: Naukri Service Updater
-                url: http://0.0.0.0:10003
+                url: http://0.0.0.0:10004
 
       - size: full
         widgets:
@@ -55,6 +72,9 @@ pages:
               - title: Github
                 shortcut: "!gh"
                 url: https://github.com/search?q={QUERY}&type=repositories
+              - title: Media Server
+                shortcut: "!m"
+                url: http://0.0.0.0:8096/web/#/search.html?query={QUERY}
 
           - type: monitor
             cache: 1m
@@ -106,8 +126,8 @@ pages:
             title: Surveillance
             sites:
               - title: Frigate
-                url: http://0.0.0.0:5000
-                check-url: http://0.0.0.0:5000
+                url: https://0.0.0.0:8971
+                check-url: https://0.0.0.0:8971
                 icon: di:frigate
 
           - type: monitor
@@ -119,10 +139,9 @@ pages:
                 check-url: http://0.0.0.0:8081
                 icon: di:nextcloud
               - title: File Browser
-                url: http://0.0.0.0:8082
-                check-url: http://0.0.0.0:8082
+                url: http://0.0.0.0:8083
+                check-url: http://0.0.0.0:8083
                 icon: di:filebrowser
-
 
           - type: monitor
             cache: 1m
