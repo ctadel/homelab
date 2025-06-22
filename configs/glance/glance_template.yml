@@ -14,34 +14,41 @@ pages:
                 hide-mountpoints-by-default: true
                 mountpoints:
                   "/":
-                    name: SSD Root
+                    name: System
                     hide: false
-                  "/archive":
-                    name: Archive
+                  "/data/config":
+                    name: SanDisk microSD
+                    hide: false
+                  "/data/media":
+                    name: SSD Media Drive
                     hide: false
 
           - type: dns-stats
             service: adguard
-            url: http://0.0.0.0:5301
-            username: admin
-            password: password
+            url: ${ADGUARD_CHECK_URL}
+            username: ${ADGUARD_USERNAME}
+            password: ${ADGUARD_PASSWORD}
 
           - type: monitor
             cache: 1m
             title: Service Monitoring
             sites:
               - title: Grafana
-                url: http://0.0.0.0:9050/d/rYdddlPWk/node-exporter-full
-                check-url: http://0.0.0.0:9050
+                url: ${GRAFANA_DEFAULT_DASHBOARD}
+                check-url: ${GRAFANA_CHECK_URL}
                 icon: di:grafana
               - title: Prometheus
-                url: http://0.0.0.0:9090/targets
-                check-url: http://0.0.0.0:9090
+                url: ${PROMETHEUS_URL}
+                check-url: ${PROMETHEUS_CHECK_URL}
                 icon: di:prometheus
               - title: cAdvisor
-                url: http://0.0.0.0:9080
-                check-url: http://0.0.0.0:9080
+                url: ${CADVISOR_URL}
+                check-url: ${CADVISOR_CHECK_URL}
                 icon: sh:cadvisor
+              - title: Node Exporter
+                url: ${NODE_EXPORTER_URL}
+                check-url: ${NODE_EXPORTER_CHECK_URL}
+                icon: sh:antora-dark
 
           - type: monitor
             cache: 1m
@@ -49,15 +56,20 @@ pages:
             style: compact
             sites:
               - title: Portfolio
-                url: http://0.0.0.0:10000
+                url: ${PORTFOLIO_URL}
+                check-url: ${PORTFOLIO_CHECK_URL}
               - title: Web Library - Frontend
-                url: http://0.0.0.0:10001
+                url: ${WEBLIB_FRONTEND_URL}
+                check-url: ${WEBLIB_FRONTEND_CHECK_URL}
               - title: Web Library - Backend
-                url: http://0.0.0.0:10002
+                url: ${WEBLIB_BACKEND_URL}
+                check-url: ${WEBLIB_BACKEND_CHECK_URL}
               - title: Rashifall API
-                url: http://0.0.0.0:10003
+                url: ${RASHIFALL_API_URL}
+                check-url: ${RASHIFALL_API_CHECK_URL}
               - title: Naukri Service Updater
-                url: http://0.0.0.0:10004
+                url: ${NAUKRI_SERVICE_UPDATER_URL}
+                check-url: ${NAUKRI_SERVICE_UPDATER_CHECK_URL}
 
       - size: full
         widgets:
@@ -74,15 +86,15 @@ pages:
                 url: https://github.com/search?q={QUERY}&type=repositories
               - title: Media Server
                 shortcut: "!m"
-                url: http://0.0.0.0:8096/web/#/search.html?query={QUERY}
+                url: ${JELLYFIN_URL} + "/web/#/search.html?query={QUERY}"
 
           - type: monitor
             cache: 1m
             title: Home Assistant
             sites:
               - title: Home Assistant
-                url: http://0.0.0.0:8123
-                check-url: http://0.0.0.0:8123
+                url: ${HOME_ASSISTANT_URL}
+                check-url: ${HOME_ASSISTANT_CHECK_URL}
                 icon: di:home-assistant
 
           - type: monitor
@@ -90,35 +102,33 @@ pages:
             title: Media Server
             sites:
               - title: Jellyfin
-                url: http://0.0.0.0:8096
-                check-url: http://0.0.0.0:8096
+                url: ${JELLYFIN_URL}
+                check-url: ${JELLYFIN_CHECK_URL}
                 icon: di:jellyfin
               - title: Plex
-                url: http://0.0.0.0:32400
-                check-url: http://0.0.0.0:32400
+                url: ${PLEX_URL}
+                check-url: ${PLEX_CHECK_URL}
                 icon: di:plex
-                alt-status-codes:
-                  - 401
-                  - 403
+                alt-status-codes: [401, 403]
               - title: Jellyseerr
-                url: http://0.0.0.0:5055
-                check-url: http://0.0.0.0:5055
+                url: ${JELLYSEERR_URL}
+                check-url: ${JELLYSEERR_CHECK_URL}
                 icon: di:jellyseerr
               - title: qBittorrent
-                url: http://0.0.0.0:8181
-                check-url: http://0.0.0.0:8181
+                url: ${QBITTORRENT_URL}
+                check-url: ${QBITTORRENT_CHECK_URL}
                 icon: di:qbittorrent
               - title: Sonarr
-                url: http://0.0.0.0:8989
-                check-url: http://0.0.0.0:8989
+                url: ${SONARR_URL}
+                check-url: ${SONARR_CHECK_URL}
                 icon: di:sonarr
               - title: Radarr
-                url: http://0.0.0.0:7878
-                check-url: http://0.0.0.0:7878
+                url: ${RADARR_URL}
+                check-url: ${RADARR_CHECK_URL}
                 icon: di:radarr
               - title: Prowlarr
-                url: http://0.0.0.0:9696
-                check-url: http://0.0.0.0:9696
+                url: ${PROWLARR_URL}
+                check-url: ${PROWLARR_CHECK_URL}
                 icon: di:prowlarr
 
           - type: monitor
@@ -126,21 +136,22 @@ pages:
             title: Surveillance
             sites:
               - title: Frigate
-                url: https://0.0.0.0:8971
-                check-url: https://0.0.0.0:8971
+                url: ${FRIGATE_URL}
+                check-url: ${FRIGATE_CHECK_URL}
                 icon: di:frigate
+                alt-status-codes: [401, 403]
 
           - type: monitor
             cache: 1m
             title: Cloud Server
             sites:
               - title: Nextcloud
-                url: http://0.0.0.0:8081
-                check-url: http://0.0.0.0:8081
+                url: ${NEXTCLOUD_URL}
+                check-url: ${NEXTCLOUD_CHECK_URL}
                 icon: di:nextcloud
               - title: File Browser
-                url: http://0.0.0.0:8083
-                check-url: http://0.0.0.0:8083
+                url: ${FILEBROWSER_URL}
+                check-url: ${FILEBROWSER_CHECK_URL}
                 icon: di:filebrowser
 
           - type: monitor
@@ -148,22 +159,21 @@ pages:
             title: Infrastructure
             sites:
               - title: Portainer
-                url: http://0.0.0.0:9000
-                check-url: http://0.0.0.0:9000
+                url: ${PORTAINER_URL}
+                check-url: ${PORTAINER_CHECK_URL}
                 icon: di:portainer
               - title: AdGuard Home
-                url: http://0.0.0.0:5301
-                check-url: http://0.0.0.0:5301
+                url: ${ADGUARD_URL}
+                check-url: ${ADGUARD_CHECK_URL}
                 icon: di:adguard-home
               - title: Nginx Proxy Manager
-                url: http://0.0.0.0:81
-                check-url: http://0.0.0.0:81
+                url: ${NGINX_PROXY_MANAGER_URL}
+                check-url: ${NGINX_PROXY_MANAGER_CHECK_URL}
                 icon: di:nginx-proxy-manager
               - title: Heimdall
-                url: http://0.0.0.0:4443
-                check-url: http://0.0.0.0:4443
+                url: ${HEIMDALL_URL}
+                check-url: ${HEIMDALL_CHECK_URL}
                 icon: di:heimdall
-
 
 branding:
   custom-footer: |

@@ -14,18 +14,33 @@ else
 fi
 CONFIG_DIR="${CONFIG_DIR%/}"
 
+TEMPLATE_FILE="$CONFIG_DIR/glance_template.yml"
+ENV_FILE="$CONFIG_DIR/glance.env"
+RENDERED_FILE="$CONFIG_DIR/glance.yml"
+
+# ---- Step 2: Validate Inputs ----
 if [ ! -d "$CONFIG_DIR" ]; then
   echo "❌ Directory not found: $CONFIG_DIR"
   exit 1
 fi
 
-CONFIG_FILE="$CONFIG_DIR/glance.yml"
-if [ ! -f "$CONFIG_FILE" ]; then
-  echo "❌ glance.yml not found in: $CONFIG_DIR"
+if [ ! -f "$TEMPLATE_FILE" ]; then
+  echo "❌ glance_template.yml not found at: $TEMPLATE_FILE"
   exit 1
 fi
 
-# ---- Step 2: Detect Architecture ----
+if [ ! -f "$ENV_FILE" ]; then
+  echo "❌ glance.env not found at: $ENV_FILE"
+  exit 1
+fi
+
+# ---- Step 3: Render Config with envsubst ----
+echo "🔧 Rendering $TEMPLATE_FILE with vars from $ENV_FILE"
+export $(grep -v '^#' "$ENV_FILE" | xargs)
+envsubst < "$TEMPLATE_FILE" > "$RENDERED_FILE"
+echo "✅ Config rendered to: $RENDERED_FILE"
+
+# ---- Step 4: Detect Architecture ----
 ARCH=$(uname -m)
 case "$ARCH" in
   x86_64)   FILENAME="glance-linux-amd64.tar.gz" ;;
@@ -35,7 +50,7 @@ case "$ARCH" in
   *)        echo "❌ Unsupported architecture: $ARCH"; exit 1 ;;
 esac
 
-# ---- Step 3: Install Glance Binary ----
+# ---- Step 5: Install Glance ----
 echo "📁 Creating install directory at $INSTALL_DIR"
 sudo mkdir -p "$INSTALL_DIR"
 
@@ -48,7 +63,7 @@ sudo mv /tmp/glance "$INSTALL_DIR/glance"
 sudo chmod +x "$INSTALL_DIR/glance"
 rm /tmp/glance.tar.gz
 
-# ---- Step 4: Handle existing systemd service ----
+# ---- Step 6: Handle existing systemd service ----
 if [ -f "$SERVICE_FILE" ]; then
   echo "⚠️  systemd service $SERVICE_FILE already exists."
   read -rp "Do you want to overwrite it? (y/n): " yn
@@ -66,7 +81,7 @@ if [ -f "$SERVICE_FILE" ]; then
   esac
 fi
 
-# ---- Step 5: Create systemd service ----
+# ---- Step 7: Create systemd service ----
 echo "🛠️ Setting up systemd service"
 sudo tee "$SERVICE_FILE" > /dev/null <<EOF
 [Unit]
@@ -74,7 +89,7 @@ Description=Glance Dashboard
 After=network.target
 
 [Service]
-ExecStart=$INSTALL_DIR/glance --config $CONFIG_FILE
+ExecStart=$INSTALL_DIR/glance --config $RENDERED_FILE
 Restart=always
 User=root
 WorkingDirectory=$CONFIG_DIR
@@ -83,7 +98,7 @@ WorkingDirectory=$CONFIG_DIR
 WantedBy=multi-user.target
 EOF
 
-# ---- Step 6: Start Service ----
+# ---- Step 8: Start Service ----
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 sudo systemctl enable glance
@@ -91,4 +106,7 @@ sudo systemctl restart glance
 
 echo "✅ Glance installed and running as a service!"
 echo "📂 Config directory: $CONFIG_DIR"
+echo "📝 Template file: $TEMPLATE_FILE"
+echo "📝 Environment file: $ENV_FILE"
+echo "📝 Final config: $RENDERED_FILE"
 echo "🌐 Access it at http://localhost:8080"

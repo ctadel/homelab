@@ -21,7 +21,8 @@ volumes/
 *.env.local
 .envrc
 .env.*
-!.env.sample
+!.sample.env
+!*.sample.env
 
 # Logs
 *.log

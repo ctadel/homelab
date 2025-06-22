@@ -25,7 +25,7 @@ for stack in "${!stacks[@]}"; do
   output_file="$OUTPUT_DIR/compose.${stack}.yml"
 
   echo "🔧 Converting $compose_file → $output_file"
-  docker compose --env-file="$ENV_FILE" -f "$compose_file" convert > "$output_file"
+  docker compose --env-file="$ENV_FILE" -f "$compose_file" config > "$output_file"
 done
 
 echo && echo "✅ All custom templates for Portainer updated and saved to $OUTPUT_DIR." && echo
