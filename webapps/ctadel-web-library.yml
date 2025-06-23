@@ -1,5 +1,3 @@
-version: "3.9"
-
 networks:
   webapp:
     driver: bridge

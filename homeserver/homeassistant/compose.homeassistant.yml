@@ -1,8 +1,10 @@
-version: "3.9"
-
 networks:
   homeserver:
     driver: bridge
+
+  infra:
+    driver: bridge
+
 
 services:
   homeassistant:
@@ -18,5 +20,6 @@ services:
       - /etc/localtime:/etc/localtime:ro
     networks:
       - homeserver
+      - infra
     ports:
       - "8123:8123"

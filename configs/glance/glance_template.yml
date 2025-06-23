@@ -48,7 +48,7 @@ pages:
               - title: Node Exporter
                 url: ${NODE_EXPORTER_URL}
                 check-url: ${NODE_EXPORTER_CHECK_URL}
-                icon: sh:antora-dark
+                icon: di:prometheus
 
           - type: monitor
             cache: 1m
@@ -139,7 +139,6 @@ pages:
                 url: ${FRIGATE_URL}
                 check-url: ${FRIGATE_CHECK_URL}
                 icon: di:frigate
-                alt-status-codes: [401, 403]
 
           - type: monitor
             cache: 1m

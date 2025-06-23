@@ -1,7 +1,8 @@
-version: "3.9"
-
 networks:
   homeserver:
+    driver: bridge
+
+  infra:
     driver: bridge
 
 include:
