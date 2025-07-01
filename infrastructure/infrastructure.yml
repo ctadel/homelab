@@ -6,3 +6,4 @@ include:
   - compose.nginx-proxy-manager.yml
   - compose.adguard.yml
   - compose.portainer.yml
+  - compose.glance.yml

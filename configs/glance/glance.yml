@@ -13,19 +13,19 @@ pages:
                 name: Services
                 hide-mountpoints-by-default: true
                 mountpoints:
-                  "/":
+                  "/mnt/host":
                     name: System
                     hide: false
-                  "/data/config":
+                  "/mnt/config":
                     name: SanDisk microSD
                     hide: false
-                  "/data/media":
+                  "/mnt/media":
                     name: SSD Media Drive
                     hide: false
 
           - type: dns-stats
             service: adguard
-            url: ${ADGUARD_CHECK_URL}
+            url: ${ADGUARD_URL}
             username: ${ADGUARD_USERNAME}
             password: ${ADGUARD_PASSWORD}
 
@@ -59,11 +59,11 @@ pages:
                 url: ${PORTFOLIO_URL}
                 check-url: ${PORTFOLIO_CHECK_URL}
               - title: Web Library - Frontend
-                url: ${WEBLIB_FRONTEND_URL}
-                check-url: ${WEBLIB_FRONTEND_CHECK_URL}
+                url: ${WLIB_FRONTEND_URL}
+                check-url: ${WLIB_FRONTEND_CHECK_URL}
               - title: Web Library - Backend
-                url: ${WEBLIB_BACKEND_URL}
-                check-url: ${WEBLIB_BACKEND_CHECK_URL}
+                url: ${WLIB_BACKEND_URL}
+                check-url: ${WLIB_BACKEND_CHECK_URL}
               - title: Rashifall API
                 url: ${RASHIFALL_API_URL}
                 check-url: ${RASHIFALL_API_CHECK_URL}
@@ -169,10 +169,6 @@ pages:
                 url: ${NGINX_PROXY_MANAGER_URL}
                 check-url: ${NGINX_PROXY_MANAGER_CHECK_URL}
                 icon: di:nginx-proxy-manager
-              - title: Heimdall
-                url: ${HEIMDALL_URL}
-                check-url: ${HEIMDALL_CHECK_URL}
-                icon: di:heimdall
 
 branding:
   custom-footer: |
