@@ -33,10 +33,6 @@ pages:
             cache: 1m
             title: Infrastructure
             sites:
-              - title: Portainer
-                url: ${PORTAINER_URL}
-                check-url: ${PORTAINER_CHECK_URL}
-                icon: di:portainer
               - title: AdGuard Home
                 url: ${ADGUARD_URL}
                 check-url: ${ADGUARD_CHECK_URL}
@@ -45,40 +41,36 @@ pages:
                 url: ${NGINX_PROXY_MANAGER_URL}
                 check-url: ${NGINX_PROXY_MANAGER_CHECK_URL}
                 icon: di:nginx-proxy-manager
+              - title: Portainer
+                url: ${PORTAINER_URL}
+                check-url: ${PORTAINER_CHECK_URL}
+                icon: di:portainer
 
           - type: docker-containers
-            title: Services
+            title: Web Applications
             hide-by-default	: true
             containers:
               portfolio:
                 name: Portfolio
                 description: Personal portfolio website
+                icon: si:react
                 hide: false
               webapp-wlib-frontend:
                 name: Web Library
                 description: Document management and query system
                 url: ${WLIB_FRONTEND_URL}
+                icon: si:angular
                 hide: false
-
-          - type: monitor
-            cache: 1m
-            title: Web Apps
-            sites:
-              - title: Portfolio
-                url: ${PORTFOLIO_URL}
-                check-url: ${PORTFOLIO_CHECK_URL}
-              - title: Web Library - Frontend
-                url: ${WLIB_FRONTEND_URL}
-                check-url: ${WLIB_FRONTEND_CHECK_URL}
-              - title: Web Library - Backend
-                url: ${WLIB_BACKEND_URL}
-                check-url: ${WLIB_BACKEND_CHECK_URL}
-              - title: Rashifall API
+              webapp-rashifall-api:
+                name: Rashifall API
+                description: Rashifall API for Alexa skill
                 url: ${RASHIFALL_API_URL}
-                check-url: ${RASHIFALL_API_CHECK_URL}
-              - title: Naukri Service Updater
-                url: ${NAUKRI_SERVICE_UPDATER_URL}
-                check-url: ${NAUKRI_SERVICE_UPDATER_CHECK_URL}
+                icon: si:fastapi
+              webapp-naukri-profile-updater:
+                name: Naukri Profile Update
+                description: Cron job to update Naukri profile
+                icon: si:python
+
 
       - size: full
         widgets:

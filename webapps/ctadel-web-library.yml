@@ -15,7 +15,7 @@ services:
     networks:
       - webappnet
     labels:
-      glance.name: Web Library - Backend
+      glance.name: FastAPI - Backend
       glance.parent: webapp-wlib-frontend
       glance.hide: false
 
