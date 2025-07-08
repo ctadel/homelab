@@ -1,6 +1,6 @@
 networks:
-  webapp:
-    driver: bridge
+  webappnet:
+    external: true
 
 include:
   - ctadel-web-library.yml

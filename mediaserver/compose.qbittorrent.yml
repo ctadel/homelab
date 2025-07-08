@@ -1,6 +1,6 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 services:
   qbittorrent:
@@ -11,13 +11,11 @@ services:
       - PGID=${PGID:-1000}
       - TZ=${TZ:-UTC}
       - WEBUI_PORT=8181
-      - QBITTORRENT__WEBUI__USERNAME=${QBITTORRENT_WEBUI_USERNAME:-admin}
-      - QBITTORRENT__WEBUI__PASSWORD=${QBITTORRENT_WEBUI_PASSWORD:-adminadmin}
     volumes:
       - ${CONFIG_DIR}/qbittorrent:/config
       - ${MEDIA_DIR}/downloads:/downloads
     networks:
-      - theatre
+      - medianet
     ports:
       - "8181:8181"
     restart: unless-stopped

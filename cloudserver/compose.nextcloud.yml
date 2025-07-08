@@ -1,6 +1,6 @@
 networks:
-  cloudserver:
-    driver: bridge
+  cloudnet:
+    external: true
 
 services:
   nextcloud:
@@ -17,5 +17,5 @@ services:
       - "8081:80"
       - "8082:443"
     networks:
-      - cloudserver
+      - cloudnet
     restart: unless-stopped

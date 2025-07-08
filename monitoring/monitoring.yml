@@ -1,6 +1,6 @@
 networks:
-  stats:
-    driver: bridge
+  watchnet:
+    external: true
 
 include:
   - compose.cadvisor.yml

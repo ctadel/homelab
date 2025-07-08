@@ -1,6 +1,6 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 include:
   - compose.plex.yml

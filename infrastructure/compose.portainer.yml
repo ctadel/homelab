@@ -1,6 +1,6 @@
 networks:
-  infra:
-    driver: bridge
+  infranet:
+    external: true
 
 services:
   portainer:
@@ -16,7 +16,7 @@ services:
     ports:
       - "9000:9000"
     networks:
-      - infra
+      - infranet
     security_opt:
       - no-new-privileges:true
     restart: unless-stopped

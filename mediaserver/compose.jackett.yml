@@ -1,6 +1,6 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 services:
   jackett:
@@ -16,4 +16,6 @@ services:
     ports:
       - "9117:9117"
     restart: unless-stopped
+    networks:
+      - medianet
 

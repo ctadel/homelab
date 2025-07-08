@@ -1,6 +1,6 @@
 networks:
-  cloudserver:
-    driver: bridge
+  homenet:
+    external: true
 
 services:
   filebrowser:
@@ -20,5 +20,5 @@ services:
       - PGID=${PGID:-1000}
     command: ["--address", "0.0.0.0", "--root", "/srv", "--database", "/config/database.db", "--config", "/config/.filebrowser.json"]
     networks:
-      - cloudserver
+      - homenet
     restart: unless-stopped

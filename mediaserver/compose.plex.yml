@@ -1,22 +1,24 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 services:
-  jellyfin:
-    image: lscr.io/linuxserver/jellyfin:latest
-    container_name: jellyfin
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-UTC}
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM:-}
     volumes:
-      - ${CONFIG_DIR}/jellyfin:/config
+      - ${CONFIG_DIR}/plex:/config
       - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/series:/series
       - ${MEDIA_DIR}/music:/music
     ports:
-      - "8096:8096"
+      - 32400:32400
     networks:
-      - theatre
+      - medianet
     restart: unless-stopped

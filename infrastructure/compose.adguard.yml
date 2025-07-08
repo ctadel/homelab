@@ -1,6 +1,6 @@
 networks:
-  infra:
-    driver: bridge
+  infranet:
+    external: true
 
 services:
   adguard:
@@ -22,4 +22,4 @@ services:
       - "853:853/tcp"
       - "784:784/udp"
     networks:
-      - infra
+      - infranet

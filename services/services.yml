@@ -1,0 +1,6 @@
+networks:
+  servicenet:
+    external: true
+
+include:
+  - compose.redis.yml

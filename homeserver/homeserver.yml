@@ -1,16 +1,8 @@
 networks:
-  homeserver:
-    driver: bridge
-
-  theatre:
-    driver: bridge
-
-  cloudserver:
-    driver: bridge
+  homenet:
+    external: true
 
 include:
-  - cloudserver/cloudserver.yml
-  - homesecurity/homesecurity.yml
-  - homeassistant/homeassistant.yml
-  - mediaserver/mediaserver.yml
-
+  - compose.frigate.yml
+  - compose.homeassistant.yml
+  - compose.filebrowser.yml

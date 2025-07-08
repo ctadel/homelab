@@ -1,10 +1,6 @@
 networks:
-  homeserver:
-    driver: bridge
-
-  infra:
-    driver: bridge
-
+  homenet:
+    external: true
 
 services:
   homeassistant:
@@ -19,7 +15,6 @@ services:
       - ${CONFIG_DIR}/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - homeserver
-      - infra
+      - homenet
     ports:
       - "8123:8123"

@@ -1,22 +1,22 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 services:
-  sonarr:
-    image: lscr.io/linuxserver/sonarr:latest
-    container_name: sonarr
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
     environment:
       - PUID=${PUID:-1000}
       - PGID=${PGID:-1000}
       - TZ=${TZ:-UTC}
     volumes:
-      - ${CONFIG_DIR}/sonarr:/config
-      - ${MEDIA_DIR}/series:/series
+      - ${CONFIG_DIR}/radarr:/config
+      - ${MEDIA_DIR}/movies:/movies
       - ${MEDIA_DIR}/downloads:/downloads
     ports:
-      - "8989:8989"
+      - "7878:7878"
     networks:
-      - theatre
+      - medianet
     restart: unless-stopped
 

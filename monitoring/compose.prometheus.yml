@@ -1,6 +1,6 @@
 networks:
-  stats:
-    driver: bridge
+  watchnet:
+    external: true
 
 services:
   prometheus:
@@ -15,7 +15,7 @@ services:
       - 9090:9090
     volumes:
       - ${CONFIG_DIR}/prometheus/:/prometheus
-      - ../configs/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ../.config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     networks:
-      - stats
+      - watchnet
     restart: unless-stopped

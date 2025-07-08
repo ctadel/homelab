@@ -1,6 +1,6 @@
 networks:
-  homeserver:
-    driver: bridge
+  homenet:
+    external: true
 
 services:
   frigate:
@@ -35,4 +35,4 @@ services:
       - PUID=${PUID}
       - PGID=${PGID}
     networks:
-      - homeserver
+      - homenet

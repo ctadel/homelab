@@ -1,6 +1,6 @@
 networks:
-  infra:
-    driver: bridge
+  infranet:
+    external: true
 
 services:
   nginx-proxy-manager:
@@ -18,5 +18,5 @@ services:
       - "443:443"
       - "81:81"
     networks:
-      - infra
+      - infranet
     restart: unless-stopped

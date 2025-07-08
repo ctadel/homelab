@@ -1,13 +1,13 @@
 networks:
-  stats:
-    driver: bridge
+  watchnet:
+    external: true
 
 services:
   node_exporter:
     image: prom/node-exporter:latest
     container_name: node_exporter
     networks:
-      - stats
+      - watchnet
     ports:
       - 9100:9100
     environment:

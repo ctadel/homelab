@@ -1,6 +1,6 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 services:
   prowlarr:
@@ -15,6 +15,5 @@ services:
     ports:
       - 9696:9696
     networks:
-      - theatre
+      - medianet
     restart: unless-stopped
-

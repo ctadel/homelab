@@ -1,0 +1,9 @@
+networks:
+  cloudnet:
+    external: true
+  servicenet:
+    external: true
+
+include:
+  - compose.nextcloud.yml
+  - compose.paperless.yml

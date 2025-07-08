@@ -1,39 +1,39 @@
 networks:
-  infra:
-    driver: bridge
+  infranet:
+    external: true
 
 services:
   glance:
     container_name: glance
     image: glanceapp/glance
     env_file:
-      - ../configs/glance/local.env
+      - ../.config/glance/local.env
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ../configs/glance/:/app/config
+      - ../.config/glance/:/app/config
       - /data/media:/mnt/media
       - /data/config:/mnt/config
       - /:/mnt/host
     ports:
       - "8881:8080"
     networks:
-      - infra
+      - infranet
     restart: unless-stopped
 
   glance_private:
     container_name: glance_private
     image: glanceapp/glance
     env_file:
-      - ../configs/glance/private.env
+      - ../.config/glance/private.env
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ../configs/glance/:/app/config
+      - ../.config/glance/:/app/config
       - /data/media:/mnt/media
       - /data/config:/mnt/config
       - /:/mnt/host
@@ -41,25 +41,25 @@ services:
     ports:
       - "8880:8080"
     networks:
-      - infra
+      - infranet
     restart: unless-stopped
 
   glance_public:
     container_name: glance_public
     image: glanceapp/glance
     env_file:
-      - ../configs/glance/public.env
+      - ../.config/glance/public.env
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
-      - ../configs/glance/:/app/config
+      - ../.config/glance/:/app/config
       - /data/media:/mnt/media
       - /data/config:/mnt/config
       - /:/mnt/host
     ports:
       - "8882:8080"
     networks:
-      - infra
+      - infranet
     restart: unless-stopped

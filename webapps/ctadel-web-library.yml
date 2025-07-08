@@ -1,6 +1,6 @@
 networks:
-  webapp:
-    driver: bridge
+  webappnet:
+    external: true
 
 services:
   backend:
@@ -13,7 +13,7 @@ services:
     ports:
       - "10002:8000"
     networks:
-      - webapp
+      - webappnet
 
   frontend:
     image: ctadel/wlib-frontend:latest
@@ -26,4 +26,4 @@ services:
     depends_on:
       - backend
     networks:
-      - webapp
+      - webappnet

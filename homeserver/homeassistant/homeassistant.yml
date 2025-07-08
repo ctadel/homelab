@@ -1,9 +1,0 @@
-networks:
-  homeserver:
-    driver: bridge
-
-  infra:
-    driver: bridge
-
-include:
-  - compose.homeassistant.yml

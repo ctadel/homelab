@@ -1,6 +1,6 @@
 networks:
-  infra:
-    driver: bridge
+  infranet:
+    external: true
 
 include:
   - compose.nginx-proxy-manager.yml

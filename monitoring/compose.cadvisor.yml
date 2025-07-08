@@ -1,6 +1,6 @@
 networks:
-  stats:
-    driver: bridge
+  watchnet:
+    external: true
 
 services:
   cadvisor:
@@ -21,5 +21,5 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     privileged: true
     networks:
-      - stats
+      - watchnet
     restart: unless-stopped

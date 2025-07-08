@@ -1,6 +1,0 @@
-networks:
-  homeserver:
-    driver: bridge
-
-include:
-  - compose.frigate.yml

@@ -2,19 +2,19 @@
 
 set -e
 
-OUTPUT_DIR="configs/portainer/templates"
+OUTPUT_DIR=".config/portainer/templates"
 ENV_FILE=".env"
 
 mkdir -p "$OUTPUT_DIR"
 
 # List of stacks with their corresponding Docker Compose files
 declare -A stacks=(
-  [mediaserver]="homeserver/mediaserver/mediaserver.yml"
-  [cloudserver]="homeserver/cloudserver/cloudserver.yml"
-  [homesecurity]="homeserver/homesecurity/homesecurity.yml"
-  [homeassistant]="homeserver/homeassistant/homeassistant.yml"
+  [mediaserver]="mediaserver/mediaserver.yml"
+  [cloudserver]="cloudserver/cloudserver.yml"
+  [homeserver]="homeserver/homeserver.yml"
   [monitoring]="monitoring/monitoring.yml"
   [infrastructure]="infrastructure/infrastructure.yml"
+  [services]="services/services.yml"
   [webapps]="webapps/webapps.yml"
 )
 

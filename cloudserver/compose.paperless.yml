@@ -1,0 +1,28 @@
+networks:
+  cloudnet:
+    external: true
+  servicenet:
+    external: true
+
+services:
+  paperless:
+    container_name: paperless
+    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    restart: unless-stopped
+    ports:
+      - 8890:8000  # or skip and reverse proxy it
+    environment:
+      - USERMAP_UID=${PUID:-1000}
+      - USERMAP_GID=${PGID:-1000}
+      - PAPERLESS_TIME_ZONE:${TZ:-'UTC'}
+      - PAPERLESS_REDIS=redis://redis:6379
+      - PAPERLESS_CONSUMER_RECURSIVE="false"
+      - PAPERLESS_CONSUMER_WORKERS=1
+    volumes:
+      - ${CONFIG_DIR}/paperless/data/:/usr/src/paperless/data
+      - ${MEDIA_DIR}/paperless/media/:/usr/src/paperless/media
+      - ${MEDIA_DIR}/paperless/export/:/usr/src/paperless/export
+      - ${MEDIA_DIR}/paperless/consume/:/usr/src/paperless/consume
+    networks:
+      - cloudnet
+      - servicenet

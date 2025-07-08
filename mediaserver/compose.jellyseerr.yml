@@ -1,6 +1,6 @@
 networks:
-  theatre:
-    driver: bridge
+  medianet:
+    external: true
 
 services:
   jellyseerr:
@@ -14,5 +14,5 @@ services:
     volumes:
       - ${CONFIG_DIR}/jellyseerr:/app/config
     networks:
-      - theatre
+      - medianet
     restart: unless-stopped

@@ -1,0 +1,18 @@
+networks:
+  servicenet:
+    external: true
+
+services:
+  redis:
+    container_name: redis
+    image: docker.io/library/redis:8
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    volumes:
+      - ${CONFIG_DIR}/redis/:/data
+    networks:
+      - servicenet

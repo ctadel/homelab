@@ -1,6 +1,6 @@
 networks:
-  stats:
-    driver: bridge
+  watchnet:
+    external: true
 
 services:
   grafana:
@@ -13,10 +13,10 @@ services:
       - PGID=${PGID:-1000}
     volumes:
       - ${CONFIG_DIR}/grafana/:/var/lib/grafana
-      - ../configs/grafana/dashboards:/etc/grafana/dashboards:ro
-      - ../configs/grafana/provisioning:/etc/grafana/provisioning/dashboards/:ro
+      - ../.config/grafana/dashboards:/etc/grafana/dashboards:ro
+      - ../.config/grafana/provisioning:/etc/grafana/provisioning/dashboards/:ro
     ports:
       - 9050:3000
     networks:
-      - stats
+      - watchnet
     restart: unless-stopped
