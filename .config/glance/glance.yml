@@ -31,39 +31,38 @@ pages:
 
           - type: monitor
             cache: 1m
-            title: Monitoring
+            title: Infrastructure
             sites:
-              - title: Grafana
-                url: ${GRAFANA_DEFAULT_DASHBOARD}
-                check-url: ${GRAFANA_CHECK_URL}
-                icon: di:grafana
-              - title: Prometheus
-                url: ${PROMETHEUS_URL}
-                check-url: ${PROMETHEUS_CHECK_URL}
-                icon: di:prometheus
-              - title: cAdvisor
-                url: ${CADVISOR_URL}
-                check-url: ${CADVISOR_CHECK_URL}
-                icon: sh:cadvisor
-              - title: Node Exporter
-                url: ${NODE_EXPORTER_URL}
-                check-url: ${NODE_EXPORTER_CHECK_URL}
-                icon: di:prometheus
+              - title: Portainer
+                url: ${PORTAINER_URL}
+                check-url: ${PORTAINER_CHECK_URL}
+                icon: di:portainer
+              - title: AdGuard Home
+                url: ${ADGUARD_URL}
+                check-url: ${ADGUARD_CHECK_URL}
+                icon: di:adguard-home
+              - title: Nginx Proxy Manager
+                url: ${NGINX_PROXY_MANAGER_URL}
+                check-url: ${NGINX_PROXY_MANAGER_CHECK_URL}
+                icon: di:nginx-proxy-manager
 
           - type: docker-containers
             title: Services
             hide-by-default	: true
             containers:
-              redis:
-                name: Redis
-                description: In-memory data store
-                icon: si:redis
+              portfolio:
+                name: Portfolio
+                description: Personal portfolio website
+                hide: false
+              webapp-wlib-frontend:
+                name: Web Library
+                description: Document management and query system
+                url: ${WLIB_FRONTEND_URL}
                 hide: false
 
           - type: monitor
             cache: 1m
             title: Web Apps
-            style: compact
             sites:
               - title: Portfolio
                 url: ${PORTFOLIO_URL}
@@ -169,20 +168,71 @@ pages:
 
           - type: monitor
             cache: 1m
-            title: Infrastructure
+            title: Monitoring
             sites:
-              - title: Portainer
-                url: ${PORTAINER_URL}
-                check-url: ${PORTAINER_CHECK_URL}
-                icon: di:portainer
-              - title: AdGuard Home
-                url: ${ADGUARD_URL}
-                check-url: ${ADGUARD_CHECK_URL}
-                icon: di:adguard-home
-              - title: Nginx Proxy Manager
-                url: ${NGINX_PROXY_MANAGER_URL}
-                check-url: ${NGINX_PROXY_MANAGER_CHECK_URL}
-                icon: di:nginx-proxy-manager
+              - title: Grafana
+                url: ${GRAFANA_DEFAULT_DASHBOARD}
+                check-url: ${GRAFANA_CHECK_URL}
+                icon: di:grafana
+              - title: Prometheus
+                url: ${PROMETHEUS_URL}
+                check-url: ${PROMETHEUS_CHECK_URL}
+                icon: di:prometheus
+              - title: cAdvisor
+                url: ${CADVISOR_URL}
+                check-url: ${CADVISOR_CHECK_URL}
+                icon: sh:cadvisor
+              - title: Node Exporter
+                url: ${NODE_EXPORTER_URL}
+                check-url: ${NODE_EXPORTER_CHECK_URL}
+                icon: di:prometheus
+
+          - type: docker-containers
+            title: Services
+            hide-by-default	: true
+            containers:
+              redis:
+                name: Redis
+                description: In-memory data store
+                icon: si:redis
+                hide: false
+
+  - name: Quicklinks
+    width: slim
+    hide-desktop-navigation: false
+    columns:
+      - size: full
+
+        widgets:
+          - type: monitor
+            cache: 1m
+            title: Movies and TV Shows in Languages
+            sites:
+              - title: Hindi Movies and TV Shows
+                url: ${JELLYSEERR_URL}/discover/movies/language/hi
+                check-url: ${JELLYSEERR_CHECK_URL}
+                icon: https://api.iconify.design/twemoji:flag-india.svg
+              - title: Nepali Movies and TV Shows
+                url: ${JELLYSEERR_URL}/discover/movies/language/ne
+                check-url: ${JELLYSEERR_CHECK_URL}
+                icon: https://api.iconify.design/twemoji:flag-nepal.svg
+
+          - type: monitor
+            cache: 1m
+            title: Streaming Services
+            sites:
+              - title: Netflix
+                url: ${JELLYSEERR_URL}/discover/tv/network/213
+                check-url: ${JELLYSEERR_CHECK_URL}
+                icon: di:netflix
+              - title: Prime Video
+                url: ${JELLYSEERR_URL}/discover/tv/network/1024
+                check-url: ${JELLYSEERR_CHECK_URL}
+                icon: di:amazon-prime
+              - title: Disney+
+                url: ${JELLYSEERR_URL}/discover/tv/network/2739
+                check-url: ${JELLYSEERR_CHECK_URL}
+                icon: di:disney-plus
 
 branding:
   custom-footer: |
