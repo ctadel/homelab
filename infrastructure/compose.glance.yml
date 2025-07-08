@@ -13,6 +13,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ../.config/glance/:/app/config
       - /data/media:/mnt/media
       - /data/config:/mnt/config
@@ -33,6 +34,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ../.config/glance/:/app/config
       - /data/media:/mnt/media
       - /data/config:/mnt/config
@@ -54,6 +56,7 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ../.config/glance/:/app/config
       - /data/media:/mnt/media
       - /data/config:/mnt/config

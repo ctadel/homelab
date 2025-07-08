@@ -31,7 +31,7 @@ pages:
 
           - type: monitor
             cache: 1m
-            title: Service Monitoring
+            title: Monitoring
             sites:
               - title: Grafana
                 url: ${GRAFANA_DEFAULT_DASHBOARD}
@@ -49,6 +49,16 @@ pages:
                 url: ${NODE_EXPORTER_URL}
                 check-url: ${NODE_EXPORTER_CHECK_URL}
                 icon: di:prometheus
+
+          - type: docker-containers
+            title: Services
+            hide-by-default	: true
+            containers:
+              redis:
+                name: Redis
+                description: In-memory data store
+                icon: si:redis
+                hide: false
 
           - type: monitor
             cache: 1m
@@ -133,12 +143,16 @@ pages:
 
           - type: monitor
             cache: 1m
-            title: Surveillance
+            title: Homeserver
             sites:
               - title: Frigate
                 url: ${FRIGATE_URL}
                 check-url: ${FRIGATE_CHECK_URL}
                 icon: di:frigate
+              - title: File Browser
+                url: ${FILEBROWSER_URL}
+                check-url: ${FILEBROWSER_CHECK_URL}
+                icon: di:filebrowser
 
           - type: monitor
             cache: 1m
@@ -148,10 +162,10 @@ pages:
                 url: ${NEXTCLOUD_URL}
                 check-url: ${NEXTCLOUD_CHECK_URL}
                 icon: di:nextcloud
-              - title: File Browser
-                url: ${FILEBROWSER_URL}
-                check-url: ${FILEBROWSER_CHECK_URL}
-                icon: di:filebrowser
+              - title: Paperless
+                url: ${PAPERLESS_URL}
+                check-url: ${PAPERLESS_CHECK_URL}
+                icon: di:paperless
 
           - type: monitor
             cache: 1m
