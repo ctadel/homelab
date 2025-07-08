@@ -3,9 +3,9 @@ networks:
     external: true
 
 services:
-  backend:
+  wlib-backend:
     image: ctadel/wlib-backend:latest
-    container_name: backend
+    container_name: webapp-wlib-backend
     restart: unless-stopped
     environment:
       - CORS_ALLOWED_ORIGINS=http://172.28.0.3,http://0.0.0.0:10001,http://localhost:10001
@@ -14,16 +14,22 @@ services:
       - "10002:8000"
     networks:
       - webappnet
+    labels:
+      glance.name: Web Library - Backend
+      glance.parent: webapp-wlib-frontend
+      glance.hide: false
 
-  frontend:
+  wlib-frontend:
     image: ctadel/wlib-frontend:latest
-    container_name: frontend
+    container_name: webapp-wlib-frontend
     restart: unless-stopped
     environment:
       - TZ=${TZ:-'UTC'}
     ports:
       - "10001:80"
     depends_on:
-      - backend
+      - wlib-backend
     networks:
       - webappnet
+    labels:
+      glance.id: webapp-wlib-frontend
