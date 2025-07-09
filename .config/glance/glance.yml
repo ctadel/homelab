@@ -29,22 +29,33 @@ pages:
             username: ${ADGUARD_USERNAME}
             password: ${ADGUARD_PASSWORD}
 
-          - type: monitor
-            cache: 1m
+          - type: docker-containers
             title: Infrastructure
-            sites:
-              - title: AdGuard Home
+            hide-by-default	: true
+            containers:
+              adguard:
+                name: AdGuard
+                description: DNS and ad-blocking service
                 url: ${ADGUARD_URL}
-                check-url: ${ADGUARD_CHECK_URL}
                 icon: di:adguard-home
-              - title: Nginx Proxy Manager
+                hide: false
+              nginx-proxy-manager:
+                name: Nginx Proxy Manager
+                description: Reverse proxy management
                 url: ${NGINX_PROXY_MANAGER_URL}
-                check-url: ${NGINX_PROXY_MANAGER_CHECK_URL}
                 icon: di:nginx-proxy-manager
-              - title: Portainer
+                hide: false
+              portainer:
+                name: Portainer
+                description: Docker container management
                 url: ${PORTAINER_URL}
-                check-url: ${PORTAINER_CHECK_URL}
+                hide: false
                 icon: di:portainer
+              cloudflared:
+                name: Cloudflared
+                description: Cloudflare Tunnel
+                icon: si:cloudflare
+                hide: false
 
           - type: docker-containers
             title: Web Applications

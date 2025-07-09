@@ -7,3 +7,4 @@ include:
   - compose.adguard.yml
   - compose.portainer.yml
   - compose.glance.yml
+  - compose.cloudflared.yml
