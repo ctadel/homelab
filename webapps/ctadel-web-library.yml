@@ -14,6 +14,10 @@ services:
       - "10002:8000"
     networks:
       - webappnet
+    volumes:
+      # You must manually create the sqlite.db file in the CONFIG_DIR
+      # and ensure it has all necessary tables and schema.
+      - ${CONFIG_DIR}/webapps/wlib-backend/sqlite.db:/app/sqlite.db
     labels:
       glance.name: FastAPI - Backend
       glance.parent: webapp-wlib-frontend
