@@ -1,33 +1,10 @@
-networks:
-  infranet:
-    external: true
-  cloudnet:
-    external: true
-  homenet:
-    external: true
-  medianet:
-    external: true
-  watchnet:
-    external: true
-  servicenet:
-    external: true
-  webappnet:
-    external: true
-
 services:
   cloudflared:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
+    network_mode: "host"
     restart: unless-stopped
     environment:
       - TZ=${TZ:-UTC}
       - TUNNEL_TOKEN=${CLOUDFLARE_TOKEN}
     command: tunnel --no-autoupdate run
-    networks:
-      - infranet
-      - cloudnet
-      - homenet
-      - medianet
-      - watchnet
-      - servicenet
-      - webappnet
