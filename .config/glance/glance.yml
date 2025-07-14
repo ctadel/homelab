@@ -179,7 +179,7 @@ pages:
                 name: File Browser
                 description: File management interface
                 url: ${FILE_BROWSER_URL}
-                icon: di:file-browser
+                icon: di:filebrowser
                 hide: false
               cloudflared:
                 name: Cloudflared
