@@ -140,18 +140,22 @@ pages:
                 check-url: ${PROWLARR_CHECK_URL}
                 icon: di:prowlarr
 
-          - type: monitor
-            cache: ${CACHE_TIME}
-            title: Cloud Server
-            sites:
-              - title: Nextcloud
+          - type: docker-containers
+            title: Cloud Services
+            hide-by-default	: true
+            containers:
+              nextcloud:
+                name: Nextcloud
+                description: Self-hosted cloud storage
                 url: ${NEXTCLOUD_URL}
-                check-url: ${NEXTCLOUD_CHECK_URL}
                 icon: di:nextcloud
-              - title: Paperless
+                hide: false
+              paperless:
+                name: Paperless
+                description: Document management system
                 url: ${PAPERLESS_URL}
-                check-url: ${PAPERLESS_CHECK_URL}
                 icon: di:paperless
+                hide: false
 
           - type: docker-containers
             title: Infrastructure
@@ -192,11 +196,6 @@ pages:
             title: Services
             hide-by-default	: true
             containers:
-              redis:
-                name: Redis
-                description: In-memory data store
-                icon: si:redis
-                hide: false
               kopia:
                 name: Kopia
                 description: Backup and restore tool

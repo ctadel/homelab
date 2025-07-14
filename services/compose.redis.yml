@@ -16,3 +16,7 @@ services:
       - ${CONFIG_DIR}/redis/:/data
     networks:
       - servicenet
+    labels:
+      glance.name: Redis Server
+      glance.parent: paperless
+      glance.hide: false

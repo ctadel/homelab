@@ -27,3 +27,5 @@ services:
     networks:
       - cloudnet
       - servicenet
+    labels:
+      glance.id: paperless
