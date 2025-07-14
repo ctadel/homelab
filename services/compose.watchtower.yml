@@ -1,0 +1,49 @@
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      WATCHTOWER_CLEANUP: "true"
+      WATCHTOWER_SCHEDULE: "0 15 4 * * 5"           # Every Friday at 4:15 AM
+      WATCHTOWER_INCLUDE_STOPPED: "false"
+      WATCHTOWER_DISABLE_CONTAINERS: ""
+      TZ: "${TZ:-UTC}"
+
+      WATCHTOWER_NOTIFICATIONS: "email"
+      WATCHTOWER_NOTIFICATION_REPORT: "true"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER: "${SMTP_EMAIL_SERVER}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PORT: "${SMTP_EMAIL_PORT:-587}"
+      WATCHTOWER_NOTIFICATION_EMAIL_FROM: "${SMTP_EMAIL_FROM:-${SMTP_EMAIL}}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_USER: "${SMTP_EMAIL}"
+      WATCHTOWER_NOTIFICATION_EMAIL_SERVER_PASSWORD: "${EMAIL_PASSWORD}"
+      WATCHTOWER_NOTIFICATION_EMAIL_TO: "${NOTIFY_USERS:-${SMTP_EMAIL}}"
+      WATCHTOWER_NOTIFICATION_EMAIL_DELAY: "0"
+      WATCHTOWER_NOTIFICATION_TEMPLATE: |
+        {{- if .Report -}}
+          {{- with .Report -}}
+        Watchtower report:
+
+        🔍 Scanned: {{len .Scanned}}
+        ✔️  Updated: {{len .Updated}}
+        ⚠️  Failed: {{len .Failed}}
+
+        {{- range .Updated}}
+        - {{.Name}} ({{.ImageName}}): {{.CurrentImageID.ShortID}} updated to {{.LatestImageID.ShortID}}
+              {{- end -}}
+              {{- range .Fresh}}
+        - {{.Name}} ({{.ImageName}}): {{.State}}
+            {{- end -}}
+            {{- range .Skipped}}
+        - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
+            {{- end -}}
+            {{- range .Failed}}
+        - {{.Name}} ({{.ImageName}}): {{.State}}: {{.Error}}
+            {{- end -}}
+          {{- end -}}
+        {{- else -}}
+          {{range .Entries -}}{{.Message}}{{"\n"}}{{- end -}}
+        {{- end -}}
+
+    restart: unless-stopped

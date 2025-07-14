@@ -199,6 +199,17 @@ pages:
                 description: In-memory data store
                 icon: si:redis
                 hide: false
+              kopia:
+                name: Kopia
+                description: Backup and restore tool
+                url: ${KOPIA_URL}
+                icon: sh:kopia
+                hide: false
+              watchtower:
+                name: Watchtower
+                description: Automatic Docker container updates
+                icon: sh:watchtower
+                hide: false
 
   - name: Quicklinks
     width: slim

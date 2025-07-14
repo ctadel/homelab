@@ -4,3 +4,5 @@ networks:
 
 include:
   - compose.redis.yml
+  - compose.kopia.yml
+  - compose.watchtower.yml

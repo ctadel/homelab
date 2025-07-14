@@ -1,0 +1,29 @@
+networks:
+  servicenet:
+    external: true
+
+services:
+  kopia:
+    image: kopia/kopia:latest
+    container_name: kopia
+    user: "0:0"
+    privileged: true
+    command:
+      - server
+      - start
+      - --insecure
+      - --server-username=admin
+      - --server-password=${KOPIA_PASSWORD:-admin}
+      - --address=0.0.0.0:51515
+    environment:
+      - TZ=${TZ:-UTC}
+      - USER=${USER:-0}
+    ports:
+      - "51515:51515"
+    volumes:
+      - ${CONFIG_DIR}/kopia/app-config:/app/config
+      - ${CONFIG_DIR}/kopia/app-cache:/app/cache
+      - ${CONFIG_DIR}:/data/config:ro
+      - ${MEDIA_DIR}:/data/media:ro
+      - ${MEDIA_DIR}/backups:/data/backups
+    restart: unless-stopped
