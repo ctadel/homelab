@@ -734,7 +734,8 @@
   "style": "dark",
   "tags": [
     "cadvisor",
-    "docker"
+    "docker",
+    "containers"
   ],
   "templating": {
     "list": [
@@ -826,8 +827,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Cadvisor exporter",
+  "title": "Docker Containers",
   "uid": "pMEd7m0Mz",
   "version": 1,
-  "description": "Simple exporter for cadvisor only"
+  "description": "This dashboard provides an overview of Docker containers metrics using cAdvisor and Prometheus. It includes panels for CPU, Memory, Network traffic, and other container-related metrics. The dashboard is designed to be used with Grafana version 7.4.5 or later."
 }

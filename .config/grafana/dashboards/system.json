@@ -16005,7 +16005,9 @@
   "refresh": "1m",
   "schemaVersion": 41,
   "tags": [
-    "linux"
+    "linux",
+    "system",
+    "node_exporter"
   ],
   "templating": {
     "list": [
@@ -16106,7 +16108,8 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "Node Exporter Full",
+  "title": "System Metrics",
+  "description": "A dashboard for monitoring system metrics using Prometheus and Node Exporter.",
   "uid": "rYdddlPWk",
   "version": 96,
   "weekStart": "",

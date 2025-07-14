@@ -16,6 +16,8 @@ services:
     volumes:
       - ${CONFIG_DIR}/prometheus/:/prometheus
       - ../.config/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      # echo 'bearer_token' > .config/watchtower/bearer_token
+      - ../.config/watchtower/bearer_token:/etc/prometheus/bearer_token:ro
     networks:
       - watchnet
     restart: unless-stopped
