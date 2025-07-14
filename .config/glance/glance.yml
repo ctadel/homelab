@@ -29,33 +29,26 @@ pages:
             username: ${ADGUARD_USERNAME}
             password: ${ADGUARD_PASSWORD}
 
-          - type: docker-containers
-            title: Infrastructure
-            hide-by-default	: true
-            containers:
-              adguard:
-                name: AdGuard
-                description: DNS and ad-blocking service
-                url: ${ADGUARD_URL}
-                icon: di:adguard-home
-                hide: false
-              nginx-proxy-manager:
-                name: Nginx Proxy Manager
-                description: Reverse proxy management
-                url: ${NGINX_PROXY_MANAGER_URL}
-                icon: di:nginx-proxy-manager
-                hide: false
-              portainer:
-                name: Portainer
-                description: Docker container management
-                url: ${PORTAINER_URL}
-                hide: false
-                icon: di:portainer
-              cloudflared:
-                name: Cloudflared
-                description: Cloudflare Tunnel
-                icon: si:cloudflare
-                hide: false
+          - type: monitor
+            cache: ${CACHE_TIME}
+            title: Monitoring
+            sites:
+              - title: Grafana
+                url: ${GRAFANA_DEFAULT_DASHBOARD}
+                check-url: ${GRAFANA_CHECK_URL}
+                icon: di:grafana
+              - title: Prometheus
+                url: ${PROMETHEUS_URL}
+                check-url: ${PROMETHEUS_CHECK_URL}
+                icon: di:prometheus
+              - title: cAdvisor
+                url: ${CADVISOR_URL}
+                check-url: ${CADVISOR_CHECK_URL}
+                icon: sh:cadvisor
+              - title: Node Exporter
+                url: ${NODE_EXPORTER_URL}
+                check-url: ${NODE_EXPORTER_CHECK_URL}
+                icon: di:prometheus
 
           - type: docker-containers
             title: Web Applications
@@ -101,16 +94,20 @@ pages:
                 url: ${JELLYFIN_URL} + "/web/#/search.html?query={QUERY}"
 
           - type: monitor
-            cache: 1m
-            title: Home Assistant
+            cache: ${CACHE_TIME}
+            title: Home Server
             sites:
               - title: Home Assistant
                 url: ${HOME_ASSISTANT_URL}
                 check-url: ${HOME_ASSISTANT_CHECK_URL}
                 icon: di:home-assistant
+              - title: Frigate
+                url: ${FRIGATE_URL}
+                check-url: ${FRIGATE_CHECK_URL}
+                icon: di:frigate
 
           - type: monitor
-            cache: 1m
+            cache: ${CACHE_TIME}
             title: Media Server
             sites:
               - title: Jellyfin
@@ -144,20 +141,7 @@ pages:
                 icon: di:prowlarr
 
           - type: monitor
-            cache: 1m
-            title: Homeserver
-            sites:
-              - title: Frigate
-                url: ${FRIGATE_URL}
-                check-url: ${FRIGATE_CHECK_URL}
-                icon: di:frigate
-              - title: File Browser
-                url: ${FILEBROWSER_URL}
-                check-url: ${FILEBROWSER_CHECK_URL}
-                icon: di:filebrowser
-
-          - type: monitor
-            cache: 1m
+            cache: ${CACHE_TIME}
             title: Cloud Server
             sites:
               - title: Nextcloud
@@ -169,26 +153,40 @@ pages:
                 check-url: ${PAPERLESS_CHECK_URL}
                 icon: di:paperless
 
-          - type: monitor
-            cache: 1m
-            title: Monitoring
-            sites:
-              - title: Grafana
-                url: ${GRAFANA_DEFAULT_DASHBOARD}
-                check-url: ${GRAFANA_CHECK_URL}
-                icon: di:grafana
-              - title: Prometheus
-                url: ${PROMETHEUS_URL}
-                check-url: ${PROMETHEUS_CHECK_URL}
-                icon: di:prometheus
-              - title: cAdvisor
-                url: ${CADVISOR_URL}
-                check-url: ${CADVISOR_CHECK_URL}
-                icon: sh:cadvisor
-              - title: Node Exporter
-                url: ${NODE_EXPORTER_URL}
-                check-url: ${NODE_EXPORTER_CHECK_URL}
-                icon: di:prometheus
+          - type: docker-containers
+            title: Infrastructure
+            hide-by-default	: true
+            containers:
+              adguard:
+                name: AdGuard
+                description: DNS and ad-blocking service
+                url: ${ADGUARD_URL}
+                icon: di:adguard-home
+                hide: false
+              nginx-proxy-manager:
+                name: Nginx Proxy Manager
+                description: Reverse proxy management
+                url: ${NGINX_PROXY_MANAGER_URL}
+                icon: di:nginx-proxy-manager
+                hide: false
+              portainer:
+                name: Portainer
+                description: Docker container management
+                url: ${PORTAINER_URL}
+                hide: false
+                icon: di:portainer
+              filebrowser:
+                name: File Browser
+                description: File management interface
+                url: ${FILE_BROWSER_URL}
+                icon: di:file-browser
+                hide: false
+              cloudflared:
+                name: Cloudflared
+                description: Cloudflare Tunnel
+                icon: si:cloudflare
+                hide: false
+
 
           - type: docker-containers
             title: Services
@@ -219,7 +217,7 @@ pages:
 
         widgets:
           - type: monitor
-            cache: 1m
+            cache: ${CACHE_TIME}
             title: Movies and TV Shows in Languages
             sites:
               - title: Hindi Movies and TV Shows
@@ -232,7 +230,7 @@ pages:
                 icon: https://api.iconify.design/twemoji:flag-nepal.svg
 
           - type: monitor
-            cache: 1m
+            cache: ${CACHE_TIME}
             title: Streaming Services
             sites:
               - title: Netflix
