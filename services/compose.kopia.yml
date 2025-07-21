@@ -16,6 +16,7 @@ services:
       - --server-password=${KOPIA_PASSWORD:-admin}
       - --address=0.0.0.0:51515
     environment:
+      - KOPIA_PASSWORD=${KOPIA_PASSWORD:-admin}
       - TZ=${TZ:-UTC}
       - USER=${USER:-0}
     ports:
