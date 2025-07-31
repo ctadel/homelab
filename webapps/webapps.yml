@@ -4,3 +4,4 @@ networks:
 
 include:
   - ctadel-web-library.yml
+  - portfolio.yml

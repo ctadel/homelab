@@ -57,7 +57,8 @@ pages:
               portfolio:
                 name: Portfolio
                 description: Personal portfolio website
-                icon: si:react
+                url: ${PORTFOLIO_URL}
+                icon: si:nuxt
                 hide: false
               webapp-wlib-frontend:
                 name: Web Library

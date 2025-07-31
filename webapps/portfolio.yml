@@ -1,0 +1,15 @@
+networks:
+  webappnet:
+    external: true
+
+services:
+  portfolio:
+    image: ctadel/portfolio:latest
+    container_name: portfolio
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ:-'UTC'}
+    ports:
+      - "10000:3000"
+    networks:
+      - webappnet
