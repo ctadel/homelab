@@ -9,6 +9,11 @@ services:
     restart: unless-stopped
     environment:
       - TZ=${TZ:-'UTC'}
+      - NUXT_SMTP_HOST=${NUXT_SMTP_HOST:-'smtp.gmail.com'}
+      - NUXT_SMTP_PORT=${NUXT_SMTP_PORT:-587}
+      - NUXT_SMTP_USER=${NUXT_SMTP_USER:-'nep.prajwal@gmail.com'}
+      - NUXT_SMTP_PASS=${NUXT_SMTP_PASS:-''}
+      - NUXT_EMAIL_TO=${NUXT_EMAIL_TO:-'nep.prajwal@gmail.com'}
     ports:
       - "10000:3000"
     networks:
