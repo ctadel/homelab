@@ -1,0 +1,12 @@
+services:
+  lnxlink:
+    image: bkbillybk/lnxlink:latest
+    container_name: lnxlink
+    restart: unless-stopped
+    network_mode: host
+    privileged: true
+    user: "0:0"
+    volumes:
+      - ../.config/lnxlink/:/opt/lnxlink/config/
+    environment:
+      - TZ=${TZ:-UTC}
