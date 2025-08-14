@@ -6,3 +6,5 @@ include:
   - compose.redis.yml
   - compose.kopia.yml
   - compose.watchtower.yml
+  - compose.mosquitto.yml
+  - compose.lnxlink.yml
