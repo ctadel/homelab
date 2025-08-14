@@ -21,6 +21,8 @@ services:
       - USER=${USER:-0}
     ports:
       - "51515:51515"
+    networks:
+      - servicenet
     volumes:
       - ${CONFIG_DIR}/kopia/app-config:/app/config
       - ${CONFIG_DIR}/kopia/app-cache:/app/cache

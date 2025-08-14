@@ -1,3 +1,7 @@
+networks:
+  servicenet:
+    external: true
+
 services:
   mosquitto:
     image: eclipse-mosquitto
@@ -10,3 +14,5 @@ services:
     volumes:
       - ../.config/mosquitto/mosquitto.conf:/mosquitto/config/mosquitto.conf
       - ../.config/mosquitto/passwd:/mosquitto/config/passwd
+    networks:
+      - servicenet
