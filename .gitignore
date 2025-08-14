@@ -1,6 +1,5 @@
 # Custom files to ignore for homelab
 .config/watchtower/bearer_token
-.config/mosquitto/passwd
 
 # Docker
 **/node_modules/
