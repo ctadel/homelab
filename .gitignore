@@ -1,5 +1,4 @@
 # Custom files to ignore for homelab
-.config/watchtower/bearer_token
 
 # Docker
 **/node_modules/
