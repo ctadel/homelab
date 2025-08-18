@@ -106,6 +106,7 @@ pages:
                 url: ${FRIGATE_URL}
                 check-url: ${FRIGATE_CHECK_URL}
                 icon: di:frigate
+                allow-insecure: true
 
           - type: monitor
             cache: ${CACHE_TIME}
@@ -207,6 +208,16 @@ pages:
                 name: Watchtower
                 description: Automatic Docker container updates
                 icon: sh:watchtower
+                hide: false
+              lnxlink:
+                name: LNXLink
+                description: Linux Agent for HA
+                icon: https://dl.flathub.org/media/io/github/bkbilly.lnxlink/166cf2501446967909ca20314e0f5a1d/icons/128x128/io.github.bkbilly.lnxlink.png
+                hide: false
+              mosquitto:
+                name: Mosquitto
+                description: MQTT broker
+                icon: sh:mosquitto
                 hide: false
 
   - name: Quicklinks
