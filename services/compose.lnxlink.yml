@@ -8,5 +8,10 @@ services:
     user: "0:0"
     volumes:
       - ../.config/lnxlink/:/opt/lnxlink/config/
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/user/1000/bus:/var/run/user/1000/bus
+      - /var/run/dbus/:/var/run/dbus/
+      - /proc/:/proc/
+      - /dev/:/dev/
     environment:
       - TZ=${TZ:-UTC}
