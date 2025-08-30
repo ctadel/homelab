@@ -8,3 +8,4 @@ include:
   - compose.portainer.yml
   - compose.glance.yml
   - compose.cloudflared.yml
+  - compose.tailscale.yml
